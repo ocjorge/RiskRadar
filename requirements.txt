@@ -1,0 +1,30 @@
+# Core Computer Vision and Deep Learning
+opencv-python>=4.8.0
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+
+# YOLO and Object Detection
+ultralytics>=8.0.0
+
+# Image Processing and Utilities
+Pillow>=9.0.0
+matplotlib>=3.5.0
+
+# Video Processing
+imageio>=2.25.0
+imageio-ffmpeg>=0.4.7
+
+# System and Threading
+psutil>=5.9.0
+
+# Optional: CUDA support (uncomment if using NVIDIA GPU)
+# torch-audio>=2.0.0+cu118 --index-url https://download.pytorch.org/whl/cu118
+
+# Development and Testing (optional)
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0
+
+# Note: MiDaS model is downloaded automatically via torch.hub
+# No additional installation required for MiDaS
