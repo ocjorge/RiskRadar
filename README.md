@@ -86,6 +86,18 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
+#### Dependencias Principales
+- **OpenCV** `>=4.8.0` - Procesamiento de video e imagen
+- **PyTorch** `>=2.0.0` - Framework de deep learning
+- **Ultralytics** `>=8.0.0` - YOLOv8 implementation
+- **NumPy** `>=1.21.0` - Operaciones numéricas
+- **Matplotlib** `>=3.5.0` - Visualización de datos
+
+#### Para GPU (Recomendado)
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+```
+
 ### 4. Descargar Modelos
 
 ```bash
@@ -188,6 +200,57 @@ config = {
 - [ ] Análisis de patrones de tráfico
 - [ ] Dashboard web en tiempo real
 
+## 📁 Estructura del Proyecto
+
+```
+riskradar-system/
+├── 📄 RiskRadarSystem_Threaded.py    # Archivo principal
+├── 📄 requirements.txt               # Dependencias
+├── 📄 README.md                     # Este archivo
+├── 📄 LICENSE                       # Licencia MIT
+├── 📁 models/                       # Modelos entrenados
+│   └── 🎯 best.pt                   # Modelo YOLOv8 personalizado
+├── 📁 data/                         # Videos de prueba
+│   └── 🎬 test_video.mp4
+├── 📁 results_risk_radar_balanced/   # Resultados de salida
+│   └── 🎬 output_balanced.mp4
+└── 📁 docs/                         # Documentación adicional
+    ├── 📊 architecture.md
+    └── 🔧 configuration.md
+```
+
+## 🔧 Resolución de Problemas
+
+### Problemas Comunes
+
+#### Error: "No se pudo abrir la fuente de video"
+```bash
+# Verifica que el archivo de video existe
+# Asegúrate de que OpenCV puede leer el formato
+pip install opencv-python-headless  # Alternativa sin GUI
+```
+
+#### Error: "CUDA out of memory"
+```python
+# Reduce la resolución de inferencia
+'INFERENCE_RESOLUTION': [640, 360]  # En lugar de [854, 480]
+```
+
+#### Rendimiento Lento
+```python
+# Aumenta el skip de frames para MiDaS
+'MIDAS_FRAME_SKIP': 5  # Procesa cada 5 frames
+```
+
+### Configuración de GPU
+
+```python
+# Verificar disponibilidad de CUDA
+import torch
+print(f"CUDA disponible: {torch.cuda.is_available()}")
+print(f"Dispositivo: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU'}")
+```
+
 ## 🐛 Reportar Problemas
 
 Si encuentras algún problema, por favor [abre un issue](https://github.com/tuusuario/riskradar-system/issues) con la siguiente información:
@@ -216,7 +279,7 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 
 ## 👥 Autores
 
-- **Tu Nombre** - *Desarrollo inicial* - [ocjorge](https://github.com/ocjorge)
+- **Jorge Ortiz** - *Desarrollo inicial* - [ocjorge](https://github.com/ocjorge)
 
 ## 🙏 Agradecimientos
 
